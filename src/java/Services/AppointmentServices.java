@@ -12,6 +12,11 @@ import java.util.Calendar;
  */
 public class AppointmentServices {
 
+    public boolean checkAvailability(Doctor doctor, Calendar time) {
+        AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
+        return appointmentAdministrator.isAvailable(doctor, time);
+    }
+
     public boolean createAppointment(Doctor doctor, Calendar time, Integer idPerson, String cost, AppointmentType type) {
         AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
 
@@ -23,22 +28,22 @@ public class AppointmentServices {
             return false;
         }
     }
-    
+
     public void cancelAppointment(Appointment appointment) {
         AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
         appointmentAdministrator.cancelAppointment(appointment);
     }
-    
+
     public void cancelAppointment(Appointment appointment, String notes) {
         AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
         appointmentAdministrator.cancelAppointment(appointment, notes);
     }
-    
+
     public void completeAppointment(Appointment appointment) {
         AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
         appointmentAdministrator.appointmentCompleted(appointment);
     }
-    
+
     public void completeAppointment(Appointment appointment, String notes) {
         AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
         appointmentAdministrator.appointmentCompleted(appointment, notes);

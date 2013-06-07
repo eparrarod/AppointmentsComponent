@@ -23,14 +23,6 @@ import javax.ejb.Stateless;
 @Stateless()
 public class CreateAppointment {
 
-    /**
-     * This is a sample web service operation
-     */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
-    }
-
     public boolean createAppointment(Doctor doctor, Calendar time, Integer idPerson, String cost, AppointmentType type) {
         return new AppointmentServices().createAppointment(doctor, time, idPerson, cost, type);
     }
