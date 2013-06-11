@@ -4,7 +4,8 @@ import Entity.Appointment;
 import Entity.AppointmentStatus;
 import Entity.AppointmentType;
 import Entity.Doctor;
-import java.util.Calendar;
+import java.sql.Time;
+import java.util.Date;
 
 /**
  *
@@ -12,13 +13,13 @@ import java.util.Calendar;
  */
 public class AppointmentAdministrator {
 
-    public boolean isAvailable(Doctor doctor, Calendar time) {
+    public boolean isAvailable(Doctor doctor, Date date, Time time) {
         for (Appointment appointment : doctor.getAppointments()) {
-            if ((appointment.getStatus() == AppointmentStatus.ASSIGNED) && (appointment.getTime().equals(time))) {
-                return true;
+            if ((appointment.getStatus() == AppointmentStatus.ASSIGNED) && (appointment.getDate().equals(date)) && (appointment.getTime().equals(time))) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public void setAppointmentTo(Doctor doctor, Appointment appointment) {

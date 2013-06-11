@@ -2,7 +2,8 @@ package Entity;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
-import java.util.Calendar;
+import java.sql.Time;
+import java.util.Date;
 import org.bson.types.ObjectId;
 
 @Entity
@@ -12,7 +13,8 @@ public class Appointment {
     private ObjectId id; 
     private int idAppointment;
     private int idPerson;
-    private Calendar time;
+    private Date date;
+    private Time time;
     private String cost;
     private String notes;
     private AppointmentType type;
@@ -21,9 +23,10 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(int idPerson, Calendar time, String cost, AppointmentType type) {
+    public Appointment(int idPerson, Date date, Time time, String cost, AppointmentType type) {
         this.idPerson = idPerson;
-        this.time = time;
+        this.date = date;
+        this.time=time;
         this.cost = cost;
         this.type = type;
         this.status = AppointmentStatus.ASSIGNED;
@@ -53,12 +56,28 @@ public class Appointment {
         this.idPerson = idPerson;
     }
 
-    public Calendar getTime() {
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Time getTime() {
         return time;
     }
 
-    public void setTime(Calendar time) {
+    public void setTime(Time time) {
         this.time = time;
+    }
+
+    public AppointmentType getType() {
+        return type;
+    }
+
+    public void setType(AppointmentType type) {
+        this.type = type;
     }
     
     public String getCost() {

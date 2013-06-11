@@ -6,10 +6,9 @@ package Facades;
 
 import Entity.Doctor;
 import Services.AppointmentServices;
-import java.util.Calendar;
+import java.sql.Time;
+import java.util.Date;
 import javax.jws.WebService;
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
 import javax.ejb.Stateless;
 
 /**
@@ -20,7 +19,7 @@ import javax.ejb.Stateless;
 @Stateless()
 public class CheckAvailability {
     
-    public boolean chackAvailability(Doctor doctor, Calendar time) {
-        return new AppointmentServices().checkAvailability(doctor, time);
+    public boolean chackAvailability(Doctor doctor, Date date, Time time) {
+        return new AppointmentServices().checkAvailability(doctor, date, time);
     }
 }
