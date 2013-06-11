@@ -5,10 +5,7 @@
 package Facades;
 
 import Entity.Appointment;
-import Entity.AppointmentType;
-import Entity.Doctor;
 import Services.AppointmentServices;
-import java.util.Calendar;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -21,12 +18,12 @@ import javax.ejb.Stateless;
 @WebService(serviceName = "CompleteAppointment")
 @Stateless()
 public class CompleteAppointment {
-
-    public void completeAppointment(Appointment appointment) {
-        new AppointmentServices().completeAppointment(appointment);
+    
+    public void completeAppointment(int idAppointment) {
+        new AppointmentServices().completeAppointment(idAppointment);
     }
-
-    public void completeAppointment(Appointment appointment, String notes) {
-        new AppointmentServices().completeAppointment(appointment, notes);
-    }
+    /*
+    public void completeAppointment(int idAppointment, String notes) {
+        new AppointmentServices().completeAppointment(idAppointment, notes);
+    }*/
 }

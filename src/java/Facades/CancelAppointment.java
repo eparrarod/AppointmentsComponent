@@ -8,7 +8,6 @@ import Entity.Appointment;
 import Entity.AppointmentType;
 import Entity.Doctor;
 import Services.AppointmentServices;
-import java.util.Calendar;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -22,11 +21,11 @@ import javax.ejb.Stateless;
 @Stateless()
 public class CancelAppointment {
 
-    public void cancelAppointment(Appointment appointment) {
-        new AppointmentServices().cancelAppointment(appointment);
+    public void cancelAppointment(int idAppointment) {
+        new AppointmentServices().cancelAppointment(idAppointment);
     }
-
-    public void cancelAppointment(Appointment appointment, String notes) {
-        new AppointmentServices().cancelAppointment(appointment, notes);
-    }
+/*
+    public void cancelAppointment(int idAppointment, String notes) {
+        new AppointmentServices().cancelAppointment(idAppointment, notes);
+    }*/
 }

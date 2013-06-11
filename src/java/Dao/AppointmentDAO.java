@@ -30,6 +30,11 @@ public class AppointmentDAO extends AbstractDAO{
         return q.get();
     }
     
+    public List findByPersonId(int personId){
+         Query<Appointment> q = ds.createQuery(Appointment.class).filter("idPerson ==", personId);
+         return q.asList();
+    }
+    
     public void removeById(int id) {
         Query<Appointment> q = ds.createQuery(Appointment.class).filter("idAppointment ==", id);
         ds.delete(q);

@@ -23,8 +23,12 @@ public class DoctorDAO extends AbstractDAO{
     public List<Doctor> findAll() {
         Query<Doctor> q = ds.createQuery(Doctor.class);
         return q.asList();
-    }   
+    }       
     
+    public List<Doctor> findAllBySpecialty(int specialty) {
+        Query<Doctor> q = ds.createQuery(Doctor.class).filter("specialty ==", specialty);
+        return q.asList();
+    }  
    
     public Doctor findById(int id) {
         Query<Doctor> q = ds.createQuery(Doctor.class).filter("idDoctor ==", id);

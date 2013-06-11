@@ -7,11 +7,14 @@
     <service name="CheckAvailability">
       <implementation-class>Facades.CheckAvailability</implementation-class>
     </service>
+    <service name="CompleteAppointment">
+      <implementation-class>Facades.CompleteAppointment</implementation-class>
+    </service>
     <service name="CancelAppointment">
       <implementation-class>Facades.CancelAppointment</implementation-class>
     </service>
-    <service name="CompleteAppointment">
-      <implementation-class>Facades.CompleteAppointment</implementation-class>
+    <service name="GetAppointments">
+      <implementation-class>Facades.GetAppointments</implementation-class>
     </service>
   </services>
   <clients/>

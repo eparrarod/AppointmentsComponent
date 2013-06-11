@@ -1,54 +1,58 @@
 package Services;
 
 import Controller.AppointmentAdministrator;
+import Dao.DoctorDAO;
 import Entity.Appointment;
 import Entity.AppointmentType;
-import Entity.Doctor;
 import java.sql.Time;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author USER
  */
 public class AppointmentServices {
+    
+    AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
 
-    public boolean checkAvailability(Doctor doctor, Date date, Time time) {
-        AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
-        return appointmentAdministrator.isAvailable(doctor, date, time);
+    public boolean checkAvailability(int idDoctor, Date date, Time time) {
+        return appointmentAdministrator.isAvailable(idDoctor, date, time);
     }
 
-    public boolean createAppointment(Doctor doctor, Date date, Time time, Integer idPerson, String cost, AppointmentType type) {
-        
-        AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
-
-        if (appointmentAdministrator.isAvailable(doctor, date, time)) {
+    public boolean createAppointment(int idDoctor, Date date, Time time, Integer idPerson, String cost, AppointmentType type) {
+       
+        if (appointmentAdministrator.isAvailable(idDoctor, date, time)) {
             Appointment appointment = new Appointment(idPerson, date, time, cost, type);
-            appointmentAdministrator.setAppointmentTo(doctor, appointment);
+            appointmentAdministrator.setAppointmentTo(idDoctor, appointment.getIdAppointment());
             return true;
         } else {
             return false;
         }
     }
 
-    public void cancelAppointment(Appointment appointment) {
-        AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
-        appointmentAdministrator.cancelAppointment(appointment);
+    public void cancelAppointment(int idAppointment) {
+        appointmentAdministrator.cancelAppointment(idAppointment);
     }
 
-    public void cancelAppointment(Appointment appointment, String notes) {
-        AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
-        appointmentAdministrator.cancelAppointment(appointment, notes);
+    public void cancelAppointment(int idAppointment, String notes) {
+        appointmentAdministrator.cancelAppointment(idAppointment, notes);
     }
 
-    public void completeAppointment(Appointment appointment) {
-        AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
-        appointmentAdministrator.appointmentCompleted(appointment);
+    public void completeAppointment(int idAppointment) {
+        appointmentAdministrator.appointmentCompleted(idAppointment);
     }
 
-    public void completeAppointment(Appointment appointment, String notes) {
-        AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
-        appointmentAdministrator.appointmentCompleted(appointment, notes);
+    public void completeAppointment(int idAppointment, String notes) {
+        appointmentAdministrator.appointmentCompleted(idAppointment, notes);
     }
+    
+    public List getDoctorsBySpecialty(int specialty){
+        DoctorDAO dd = new DoctorDAO();
+        return dd.findAllBySpecialty(specialty);
+    }
+    
+    public List getAppointmentsByPatient(int personId){
+        return appointmentAdministrator.getAppointmentsByPersonId(personId);
+        }
 }

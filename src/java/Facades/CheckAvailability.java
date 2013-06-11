@@ -18,8 +18,7 @@ import javax.ejb.Stateless;
 @WebService(serviceName = "CheckAvailability")
 @Stateless()
 public class CheckAvailability {
-    
-    public boolean chackAvailability(Doctor doctor, Date date, Time time) {
-        return new AppointmentServices().checkAvailability(doctor, date, time);
+    public boolean checkAvailability(int idDoctor, Date date, Time time) {
+        return new AppointmentServices().checkAvailability(idDoctor, date, time);
     }
 }
