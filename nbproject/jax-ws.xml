@@ -16,6 +16,9 @@
     <service name="GetAppointments">
       <implementation-class>Facades.GetAppointments</implementation-class>
     </service>
+    <service name="CreateEmergency">
+      <implementation-class>Facades.CreateEmergency</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>

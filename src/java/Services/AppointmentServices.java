@@ -55,4 +55,8 @@ public class AppointmentServices {
     public List getAppointmentsByPatient(int personId){
         return appointmentAdministrator.getAppointmentsByPersonId(personId);
         }
+    
+    public boolean createEmergency(int idDoctor, Date date, Time time, Integer idPerson, String cost){
+        return createAppointment(idDoctor, date, time, idPerson, cost, AppointmentType.EMERGENCY);
+        }
 }
