@@ -1,3 +1,7 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Services;
 
 import Controller.AppointmentAdministrator;
@@ -7,13 +11,17 @@ import Entity.AppointmentType;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
+import javax.jws.WebService;
+import javax.ejb.Stateless;
 
 /**
  *
- * @author USER
+ * @author Camilo
  */
-public class AppointmentServices {
-    
+@WebService(serviceName = "AppointmentWS")
+@Stateless()
+public class AppointmentWS {
+
     AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
 
     public boolean checkAvailability(int idDoctor, Date date, Time time) {
@@ -35,16 +43,8 @@ public class AppointmentServices {
         appointmentAdministrator.cancelAppointment(idAppointment);
     }
 
-    public void cancelAppointment(int idAppointment, String notes) {
-        appointmentAdministrator.cancelAppointment(idAppointment, notes);
-    }
-
     public void completeAppointment(int idAppointment) {
         appointmentAdministrator.appointmentCompleted(idAppointment);
-    }
-
-    public void completeAppointment(int idAppointment, String notes) {
-        appointmentAdministrator.appointmentCompleted(idAppointment, notes);
     }
     
     public List getDoctorsBySpecialty(int specialty){
