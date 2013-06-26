@@ -14,6 +14,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.ejb.Stateless;
 
@@ -24,6 +25,8 @@ import javax.ejb.Stateless;
 @WebService(serviceName = "AppointmentWS")
 @Stateless()
 public class AppointmentWS {
+    @EJB
+    private SOATClient sOATClient;
 
     AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
 
@@ -60,7 +63,9 @@ public class AppointmentWS {
         }
     
     public boolean createEmergency(int idDoctor, Date date, Time time, Integer idPerson, String cost){
-        return createAppointment(idDoctor, date, time, idPerson, cost, AppointmentType.EMERGENCY);
+        
+        if(sOATClient.validateSOAT(idPerson.toString()).isSuccess()){
+            return createAppointment(idDoctor, date, time, idPerson, cost, AppointmentType.EMERGENCY);
         }
     
     public List<String> getSpecialties() {

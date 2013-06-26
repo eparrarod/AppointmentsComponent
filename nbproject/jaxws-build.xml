@@ -30,4 +30,31 @@
                 JAX-WS WSIMPORT SECTION
                 ===================
             -->
+    <target name="wsimport-init" depends="init">
+        <fail if="${wsimport.bad.version}" message="WsImport ant task defined in the classpath ${j2ee.platform.wsimport.classpath} has a serious bug. See http://wiki.netbeans.org/MetroIssue for details."/>
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <mkdir dir="${classes.dir}"/>
+        <property name="j2ee.platform.wsimport.classpath" value="${libs.jaxws21.classpath}"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${j2ee.platform.wsimport.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-client-SoatExistWS" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/SoatExistWS"/>
+        <property name="wsdl-SoatExistWS" location="${meta.inf}/xml-resources/web-service-references/SoatExistWS/wsdl/25.27.133.68_8080/soatexistws/SoatExistWS.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/SoatExistWS" destdir="${build.generated.dir}/jax-wsCache/SoatExistWS" wsdl="${wsdl-SoatExistWS}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://25.27.133.68:8080/SoatExistWS/SoatExistWS?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-SoatExistWS}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/SoatExistWS"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/SoatExistWS">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-SoatExistWS" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/SoatExistWS"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/confirmsoat"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-SoatExistWS"/>
 </project>
