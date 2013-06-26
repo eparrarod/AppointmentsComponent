@@ -87,7 +87,7 @@ public class AppointmentAdministrator {
     }
     
     public void updateDoctor(Doctor doctor) {
-        dd.update(doctor);
+        dd.create(doctor);
     }
     
     public List<Doctor> getListDoctor() {
