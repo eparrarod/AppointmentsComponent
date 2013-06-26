@@ -3,6 +3,7 @@ package Entity;
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 import com.google.code.morphia.annotations.Reference;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -10,20 +11,31 @@ import org.bson.types.ObjectId;
 public class Doctor {
 
     @Id
-    private ObjectId id;
     private int idDoctor;
+    private int idHospital;
     private String name;
     private String lastname;
     private Specialty specialty;
     @Reference
     private List<Appointment> appointments;
 
-    public ObjectId getId() {
-        return id;
+    public Doctor() {
+        
+    }
+    
+    public Doctor(int idDoctor, int idHospital ,String name, Specialty specialty) {
+        this.idDoctor = idDoctor;
+        this.name = name;
+        this.specialty = specialty;
+        this.appointments = new ArrayList<Appointment>();
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
+    public int getIdHospital() {
+        return idHospital;
+    }
+
+    public void setIdHospital(int idHospital) {
+        this.idHospital = idHospital;
     }
 
     public int getIdDoctor() {

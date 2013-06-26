@@ -1,6 +1,9 @@
 
 package Dao;
 
+import Entity.Appointment;
+import Entity.Doctor;
+import Entity.MedicalRecord;
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.Morphia;
 import com.mongodb.Mongo;
@@ -22,7 +25,7 @@ public abstract class AbstractDAO {
         //se crea una instancia de morphia y se mapean las clases que necesitamos
         morphia = new Morphia();
         //morphia.map(Student.class).map(Parents.class).map(Mother.class).map(Father.class);
-        morphia.mapPackage("Entity");
+        morphia.map(Appointment.class).map(Doctor.class).map(MedicalRecord.class);
         //se le asigna a un datastore la coneccion a una base de datos en particular
         ds = morphia.createDatastore(mongo, "baseHospital");          
     }

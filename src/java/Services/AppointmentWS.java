@@ -8,7 +8,10 @@ import Controller.AppointmentAdministrator;
 import Dao.DoctorDAO;
 import Entity.Appointment;
 import Entity.AppointmentType;
+import Entity.Doctor;
+import Entity.Specialty;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.jws.WebService;
@@ -59,4 +62,32 @@ public class AppointmentWS {
     public boolean createEmergency(int idDoctor, Date date, Time time, Integer idPerson, String cost){
         return createAppointment(idDoctor, date, time, idPerson, cost, AppointmentType.EMERGENCY);
         }
+    
+    public List<String> getSpecialties() {
+        return appointmentAdministrator.getSpecialties();
+    }
+    
+    public void createDoctor(int idDoctor, int idHospital, String name, Specialty specialty) {
+       appointmentAdministrator.createDoctor(idDoctor, idHospital, name, specialty);
+    }
+    
+    public List<Doctor> getListDoctor() {
+        return appointmentAdministrator.getListDoctor();
+    }
+    
+    public List<Doctor> getDoctorsByHospitalId(int id) {
+        return appointmentAdministrator.getDoctorsByHospitalId(id);
+    }
+    
+    public void deleteDoctor(int idDoctor) {
+        appointmentAdministrator.deleteDoctor(idDoctor);
+    }
+    
+    public void updateDoctor(Doctor doctor) {
+        appointmentAdministrator.updateDoctor(doctor);
+    }
+    
+    public Doctor getDoctor(int idDoctor) {
+        return appointmentAdministrator.getDoctor(idDoctor);
+    }
 }

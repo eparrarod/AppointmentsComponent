@@ -6,7 +6,9 @@ import Entity.Appointment;
 import Entity.AppointmentStatus;
 import Entity.AppointmentType;
 import Entity.Doctor;
+import Entity.Specialty;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,8 +20,8 @@ import java.util.List;
  */
 public class AppointmentAdministrator {
 
-    DoctorDAO dd = new DoctorDAO();
-    AppointmentDAO ad = new AppointmentDAO();
+    private DoctorDAO dd = new DoctorDAO();
+    private AppointmentDAO ad = new AppointmentDAO();
     
     public boolean isAvailable(int idDoctor, Date date, Time time) {
         Doctor doctor = dd.findById(idDoctor);
@@ -61,5 +63,59 @@ public class AppointmentAdministrator {
     
     public List getAppointmentsByPersonId(int idPerson){
     return ad.findByPersonId(idPerson);
+    }
+    
+    public List<String> getSpecialties() {
+        List<String> types = new ArrayList<String>();
+        
+        types.add(Specialty.GENERAL.toString().toUpperCase());
+        types.add(Specialty.ODONTOLOGIA.toString().toUpperCase());
+        types.add(Specialty.ORTODONCIA.toString().toUpperCase());
+        types.add(Specialty.OPTOMETRIA.toString().toUpperCase());
+        types.add(Specialty.PEDIATRIA.toString().toUpperCase());
+        types.add(Specialty.CARDIOLOGIA.toString().toUpperCase());
+        
+        return types;
+    }
+    
+    public void createDoctor(int idDoctor, int idHospital, String name, Specialty specialty) {
+        dd.create(new Doctor(idDoctor, idHospital, name, specialty));
+    }
+    
+    public void deleteDoctor(int idDoctor) {
+        dd.removeById(idDoctor);
+    }
+    
+    public void updateDoctor(Doctor doctor) {
+        dd.update(doctor);
+    }
+    
+    public List<Doctor> getListDoctor() {
+        return dd.findAll();
+    }
+    
+    public Doctor getDoctor(int idDoctor) {
+        List<Doctor> list = getListDoctor();
+        
+        for(Doctor d : list) {
+            if(d.getIdDoctor() == idDoctor) {
+                return d;
+            }
+        }
+        
+        return null;
+    }
+    
+    public List<Doctor> getDoctorsByHospitalId(int id) {
+        List<Doctor> list = getListDoctor();
+        List<Doctor> listDoctor = new ArrayList<Doctor>();
+        
+        for(Doctor d : list) {
+            if(d.getIdHospital() == id) {
+                listDoctor.add(d);
+            }
+        }
+        
+        return listDoctor;
     }
 }
