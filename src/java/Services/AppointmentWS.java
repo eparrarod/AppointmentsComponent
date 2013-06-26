@@ -25,8 +25,8 @@ import javax.ejb.Stateless;
 @WebService(serviceName = "AppointmentWS")
 @Stateless()
 public class AppointmentWS {
-    @EJB
-    private SOATClient sOATClient;
+    /*@EJB
+    private SOATClient sOATClient;*/
 
     AppointmentAdministrator appointmentAdministrator = new AppointmentAdministrator();
 
@@ -62,11 +62,11 @@ public class AppointmentWS {
         return appointmentAdministrator.getAppointmentsByPersonId(personId);
         }
     
-    public boolean createEmergency(int idDoctor, Date date, Time time, Integer idPerson, String cost){
+   /* public boolean createEmergency(int idDoctor, Date date, Time time, Integer idPerson, String cost){
         
         if(sOATClient.validateSOAT(idPerson.toString()).isSuccess()){
             return createAppointment(idDoctor, date, time, idPerson, cost, AppointmentType.EMERGENCY);
-        }
+        }*/
     
     public List<String> getSpecialties() {
         return appointmentAdministrator.getSpecialties();
