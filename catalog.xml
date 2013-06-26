@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://25.27.133.68:8080/SoatExistWS/SoatExistWS" uri="src/conf/xml-resources/web-service-references/SoatExistWS/wsdl/25.27.133.68_8080/soatexistws/soatexistws"/>
+    <system systemId="http://25.27.133.68:8080/SoatExistWS/SoatExistWS?wsdl" uri="src/conf/xml-resources/web-service-references/SoatExistWS/wsdl/25.27.133.68_8080/SoatExistWS/SoatExistWS.wsdl"/>
+    <system systemId="http://25.27.133.68:8080/SoatExistWS/SoatExistWS?xsd=1" uri="src/conf/xml-resources/web-service-references/SoatExistWS/wsdl/25.27.133.68_8080/SoatExistWS/SoatExistWS.xsd_1.xsd"/>
+</catalog>
